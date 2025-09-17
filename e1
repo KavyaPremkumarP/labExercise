@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kavya's Portfolio</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #f4f4f4; }
+    header { text-align: center; }
+    h1 { color: #333; }
+    nav a { margin: 0 15px; text-decoration: none; color: #0077cc; }
+    section { margin-top: 30px; }
+    .project { background: #fff; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+    
+  <header>
+    <h1>Kavya's 3D Portfolio</h1>
+    <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    </nav>
+    </header>
+    
+    <section id="about">
+    <h2>About Me</h2>
+    <p>I’m a passionate 3D artist focused on industrial simulations like silo mass flow and funnel systems. I love learning Blender and web-based 3D workflows.</p>
+    </section>
+    
+    <section id="projects">
+    <h2>Featured Projects</h2>
+    <div class="project">
+    <h3>Silo Mass Flow Animation</h3>
+    <p>Modeled and animated in Blender, exported to glTF, and optimized for web viewing.</p>
+    </div>
+    <div class="project">
+    <h3>Funnel System Simulation</h3>
+    <p>Particle flow simulation with professional animation naming and organization.</p>
+    </div>
+    </section>
+    
+    <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: kavya@example.com</p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/kavya">linkedin.com/in/kavya</a></p>
+    </section>
+    
+    </body>
+    </html>
