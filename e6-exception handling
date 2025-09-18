@@ -1,0 +1,30 @@
+<?php
+// Library books stored in multidimensional associative array
+$library = [
+   ["title" => "AI Basics", "author" => "John Smith", "available" => true],
+   ["title" => "PHP for Web", "author" => "Kavya R", "available" => false],
+   ["title" => "Data Science 101", "author" => "Meena P", "available" => true],
+   ["title" => "Machine Learning", "author" => "Rahul K", "available" => true],
+   ["title" => "Cloud Computing", "author" => "Arjun V", "available" => false]
+];
+// 1. Show all books
+echo "<h2>Library Books</h2>";
+foreach ($library as $book) {
+   $status = $book['available'] ? "Available" : "Issued";
+   echo "{$book['title']} by {$book['author']} - <b>$status</b><br>";
+}
+// 2. Filter available books
+$availableBooks = array_filter($library, fn($b) => $b['available']);
+echo "<h3>Available Books:</h3>";
+foreach ($availableBooks as $book) {
+   echo "{$book['title']} ({$book['author']})<br>";
+}
+// 3. Sort books alphabetically by title
+usort($library, fn($a, $b) => strcmp($a['title'], $b['title']));
+echo "<h3>Books Sorted by Title:</h3>";
+foreach ($library as $book) {
+   echo "{$book['title']}<br>";
+}
+?>
+
+
