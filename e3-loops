@@ -1,0 +1,38 @@
+<?php
+// Student details
+$student = "Kavya";
+$marks = ["Math"=>85, "Science"=>92, "English"=>74];
+echo "<h2>Report Card - $student</h2>";
+// 1. foreach loop → show marks
+$total = 0;
+foreach ($marks as $sub=>$m) {
+   echo "$sub : $m <br>";
+   $total += $m;
+}
+// 2. if-elseif → grade
+$avg = $total / count($marks);
+if ($avg >= 90) $grade="A+";
+elseif ($avg >= 75) $grade="A";
+elseif ($avg >= 50) $grade="B";
+else $grade="Fail";
+echo "Average: $avg <br>Grade: $grade <br><br>";
+// 3. switch → day message
+$day = date("l");
+switch ($day) {
+   case "Monday": echo "Fresh week, study well!<br>"; break;
+   case "Friday": echo "Weekend is near!<br>"; break;
+   default: echo "Keep going!<br>";
+}
+// 4. while → top subject
+arsort($marks);
+$cnt=1;
+while ($cnt<=1) { // only best subject
+   echo "Best Subject: ".key($marks)." - ".current($marks);
+   break;
+}
+// 5. do-while → study reminder
+$h=1;
+do { echo "<br>Study $h hr(s)"; $h++; } while ($h<=2);
+?>
+
+
