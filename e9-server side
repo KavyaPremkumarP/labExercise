@@ -1,0 +1,43 @@
+<?php
+// Start session if you want to use session later
+session_start();
+// Define valid credentials
+$validUser = "kavya";
+$validPass = "12345";
+// Initialize error message
+$error = "";
+if (isset($_POST['login'])) {
+   $username = $_POST['username'];
+   $password = $_POST['password'];
+   // Server-side validation
+   if ($username === $validUser && $password === $validPass) {
+       // Redirect to welcome page
+       header("Location: welcome.php");
+       exit();
+   } else {
+       $error = "Invalid Username or Password!";
+   }
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Login Form</title>
+</head>
+<body>
+   <h2>User Login</h2>
+   <form method="post" action="">
+       Username: <input type="text" name="username" required><br><br>
+       Password: <input type="password" name="password" required><br><br>
+       <input type="submit" name="login" value="Login">
+   </form>
+   <?php
+   // Show error message if login fails
+   if (!empty($error)) {
+       echo "<p style='color:red;'>$error</p>";
+   }
+   ?>
+</body>
+</html>
+
+
