@@ -1,0 +1,61 @@
+<?php
+// Class for Bank Account
+class BankAccount {
+    private $holder;
+    private $balance;
+
+
+    // Constructor
+    public function __construct($holder, $balance = 0) {
+        $this->holder = $holder;
+        $this->balance = $balance;
+    }
+
+
+    // Deposit Method
+    public function deposit($amount) {
+        if ($amount <= 0) {
+            throw new Exception("Invalid deposit amount!");
+        }
+        $this->balance += $amount;
+        echo "Deposited: $amount <br>";
+    }
+
+
+    // Withdraw Method
+    public function withdraw($amount) {
+        if ($amount <= 0) {
+            throw new Exception("Invalid withdrawal amount!");
+        }
+        if ($amount > $this->balance) {
+            throw new Exception("Insufficient Balance!");
+        }
+        $this->balance -= $amount;
+        echo "Withdrawn: $amount <br>";
+    }
+
+
+    // Display Balance
+    public function getBalance() {
+        return $this->balance;
+    }
+}
+
+
+// Main Program
+try {
+    $account = new BankAccount("Kavya", 5000);
+    echo "<h2>Bank Transaction Report</h2>";
+    
+    $account->deposit(2000);     // Valid Deposit
+    $account->withdraw(3000);    // Valid Withdrawal
+    $account->withdraw(6000);    // Will throw Exception
+    
+} catch (Exception $e) {
+    echo "Transaction Error: " . $e->getMessage() . "<br>";
+}
+
+
+// Final Balance
+echo "Final Balance: " . $account->getBalance();
+?>
