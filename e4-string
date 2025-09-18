@@ -1,0 +1,30 @@
+<?php
+// Step 1: Define a sample string
+$text = "welcome to the inventory management system";
+// Step 2: Display original string
+echo "🔹 Original Text: $text<br><br>";
+// Step 3: String length
+$length = strlen($text);
+echo "📏 Length of string: $length characters<br>";
+// Step 4: Convert to uppercase
+$upper = strtoupper($text);
+echo "🔠 Uppercase: $upper<br>";
+// Step 5: Convert to lowercase
+$lower = strtolower($text);
+echo "🔡 Lowercase: $lower<br>";
+// Step 6: Capitalize each word
+$capitalized = ucwords($text);
+echo "🧢 Capitalized Words: $capitalized<br>";
+// Step 7: Extract substring (first 10 characters)
+$snippet = substr($text, 0, 10);
+echo "✂️ Substring (first 10 chars): $snippet<br>";
+// Step 8: Replace word and find position
+$replaced = str_replace("inventory", "stock", $text);
+$position = strpos($text, "management");
+echo "🔄 Replaced Text: $replaced<br>";
+echo "📍 Position of 'management': $position<br>";
+?>
+
+
+
+
