@@ -1,0 +1,30 @@
+<?php
+// Function to calculate average marks
+function calculateAverage($marks) {
+   $total = array_sum($marks);   // sum of array values
+   $count = count($marks);       // number of subjects
+   return $total / $count;
+}
+// Function to find grade
+function findGrade($avg) {
+   if ($avg >= 90) return "A+";
+   elseif ($avg >= 75) return "A";
+   elseif ($avg >= 60) return "B";
+   elseif ($avg >= 50) return "C";
+   else return "Fail";
+}
+// Array of subjects and marks
+$student = "Kavya";
+$marks = ["Math" => 85, "Science" => 92, "English" => 74];
+// Display marks (using foreach)
+echo "<h2>Report Card - $student</h2>";
+foreach ($marks as $subject => $score) {
+   echo "$subject : $score <br>";
+}
+// Call functions
+$average = calculateAverage($marks);
+$grade = findGrade($average);
+// Output results
+echo "<br>Average Marks: $average";
+echo "<br>Grade: $grade";
+?>
