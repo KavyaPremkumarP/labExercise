@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>My Daily Diary</title>
+   <style>
+       body {
+           font-family: "Segoe UI", Arial, sans-serif;
+           background: #f0f4f8;
+           margin: 0;
+           padding: 0;
+       }
+       header {
+           background: #3f51b5;
+           color: white;
+           text-align: center;
+           padding: 25px 0;
+       }
+       section {
+           max-width: 700px;
+           margin: 20px auto;
+           background: #ffffff;
+           padding: 20px;
+           border-radius: 10px;
+           box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+       }
+       h2 {
+           color: #3f51b5;
+       }
+       .note {
+           background: #e8f0fe;
+           padding: 12px;
+           margin: 10px 0;
+           border-left: 6px solid #3f51b5;
+           border-radius: 5px;
+       }
+       footer {
+           text-align: center;
+           padding: 15px;
+           background: #d1d9ff;
+           margin-top: 20px;
+       }
+   </style>
+</head>
+<body>
+   <header>
+       <h1>My Daily Diary</h1>
+       <p>Track your day in Morning, Afternoon, and Evening</p>
+   </header>
+   <section>
+       <h2>Morning Notes</h2>
+       <div class="note">Workout for 30 minutes.</div>
+       <div class="note">Prepare breakfast.</div>
+   </section>
+   <section>
+       <h2>Afternoon Notes</h2>
+       <div class="note">Attend project meeting at 2 PM.</div>
+       <div class="note">Lunch with team.</div>
+   </section>
+   <section>
+       <h2>Evening Notes</h2>
+       <div class="note">Read a book for 1 hour.</div>
+       <div class="note">Plan tasks for tomorrow.</div>
+   </section>
+   <footer>
+       &copy; 2025 My Daily Diary
+   </footer>
+</body>
+</html>
+     
