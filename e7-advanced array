@@ -1,0 +1,47 @@
+<?php
+// Function to calculate total marks
+function getTotal($marks) {
+   return array_sum($marks);  // adds all marks
+}
+// Function to calculate average marks
+function getAverage($marks) {
+   return array_sum($marks) / count($marks);  // total ÷ number of subjects
+}
+// Function to assign grade based on average
+function getGrade($average) {
+   if ($average >= 90) {
+       return "A+";
+   } elseif ($average >= 75) {
+       return "A";
+   } elseif ($average >= 60) {
+       return "B";
+   } elseif ($average >= 40) {
+       return "C";
+   } else {
+       return "Fail";
+   }
+}
+// Student marks stored in an array
+$studentMarks = array(
+   "Maths" => 85,
+   "Science" => 72,
+   "English" => 91,
+   "Computer" => 88,
+   "History" => 67
+);
+// Processing
+$total = getTotal($studentMarks);
+$average = getAverage($studentMarks);
+$grade = getGrade($average);
+// Output
+echo "<h2>Student Grade Report</h2>";
+foreach ($studentMarks as $subject => $mark) {
+   echo "$subject : $mark <br>";
+}
+echo "----------------------------<br>";
+echo "Total Marks : $total <br>";
+echo "Average Marks : " . number_format($average, 2) . "<br>";
+echo "Final Grade : $grade <br>";
+?>
+
+
