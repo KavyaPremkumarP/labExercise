@@ -1,3 +1,5 @@
+3.Inventory Management using Control Structures and Loops in PHP
+
 <?php
 // Student details
 $student = "Kavya";
