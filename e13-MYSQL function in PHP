@@ -1,0 +1,101 @@
+13.Library Management using MySQL Functions in PHP
+
+<?php
+// Step 1: Connect to MySQL
+$mysqli = new mysqli("localhost", "root", "", "");
+if ($mysqli->connect_error) {
+    die("Connection failed: " . $mysqli->connect_error);
+}
+
+// Step 2: Create Database and Tables
+$mysqli->query("CREATE DATABASE IF NOT EXISTS library_db");
+$mysqli->select_db("library_db");
+
+$mysqli->query("CREATE TABLE IF NOT EXISTS books (
+    book_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    author VARCHAR(255),
+    total_copies INT,
+    available_copies INT
+)");
+
+$mysqli->query("CREATE TABLE IF NOT EXISTS issued_books (
+    issue_id INT AUTO_INCREMENT PRIMARY KEY,
+    book_id INT,
+    user_name VARCHAR(255),
+    issue_date DATE,
+    return_date DATE,
+    FOREIGN KEY (book_id) REFERENCES books(book_id)
+)");
+
+// Step 3: Create MySQL Function
+$mysqli->query("DROP FUNCTION IF EXISTS check_availability");
+$mysqli->query("DELIMITER //
+CREATE FUNCTION check_availability(bid INT)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE copies INT;
+    SELECT available_copies INTO copies FROM books WHERE book_id = bid;
+    RETURN copies;
+END //
+DELIMITER ;");
+
+// Step 4: PHP Functions
+
+function addBook($title, $author, $copies, $mysqli) {
+    $stmt = $mysqli->prepare("INSERT INTO books (title, author, total_copies, available_copies) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssii", $title, $author, $copies, $copies);
+    $stmt->execute();
+    echo "✅ Book added successfully!<br>";
+}
+
+function issueBook($book_id, $user_name, $mysqli) {
+    $result = $mysqli->query("SELECT check_availability($book_id) AS available");
+    $row = $result->fetch_assoc();
+
+    if ($row['available'] > 0) {
+        $stmt = $mysqli->prepare("INSERT INTO issued_books (book_id, user_name, issue_date) VALUES (?, ?, CURDATE())");
+        $stmt->bind_param("is", $book_id, $user_name);
+        $stmt->execute();
+
+        $mysqli->query("UPDATE books SET available_copies = available_copies - 1 WHERE book_id = $book_id");
+        echo "📚 Book issued to $user_name.<br>";
+    } else {
+        echo "❌ Book not available.<br>";
+    }
+}
+
+function returnBook($issue_id, $mysqli) {
+    $stmt = $mysqli->prepare("SELECT book_id FROM issued_books WHERE issue_id = ?");
+    $stmt->bind_param("i", $issue_id);
+    $stmt->execute();
+    $stmt->bind_result($book_id);
+    $stmt->fetch();
+    $stmt->close();
+
+    $mysqli->query("UPDATE books SET available_copies = available_copies + 1 WHERE book_id = $book_id");
+    $mysqli->query("UPDATE issued_books SET return_date = CURDATE() WHERE issue_id = $issue_id");
+
+    echo "🔄 Book returned successfully.<br>";
+}
+
+function viewBooks($mysqli) {
+    $result = $mysqli->query("SELECT * FROM books");
+    echo "<h3>📖 Available Books:</h3>";
+    while ($row = $result->fetch_assoc()) {
+        echo "ID: {$row['book_id']} | Title: {$row['title']} | Author: {$row['author']} | Available: {$row['available_copies']}<br>";
+    }
+}
+
+// Step 5: Sample Usage
+addBook("The Alchemist", "Paulo Coelho", 5, $mysqli);
+addBook("Atomic Habits", "James Clear", 3, $mysqli);
+
+issueBook(1, "Kavya", $mysqli);
+issueBook(2, "Kavya", $mysqli);
+
+returnBook(1, $mysqli);
+
+viewBooks($mysqli);
+?>
