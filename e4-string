@@ -1,3 +1,5 @@
+4.Text Formatting and Operations using String Functions in PHP
+
 <?php
 // Step 1: Define a sample string
 $text = "welcome to the inventory management system";
