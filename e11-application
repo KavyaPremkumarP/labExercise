@@ -1,3 +1,5 @@
+11.Image Uploading Application using PHP
+
 <?php
 $msg = "";
 if (isset($_POST['upload'])) {
