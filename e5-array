@@ -1,3 +1,5 @@
+5.Student Grade Calculation using Arrays and Functions in PHP
+
 <?php
 // Function to calculate average marks
 function calculateAverage($marks) {
