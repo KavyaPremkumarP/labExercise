@@ -1,3 +1,5 @@
+7.Employee Salary Details using Advanced Arrays in PHP
+
 <?php
 // Function to calculate total marks
 function getTotal($marks) {
