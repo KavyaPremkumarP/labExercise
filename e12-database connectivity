@@ -1,4 +1,5 @@
 12.Student Database Connectivity using PHP and MySQL
+
 <?php
 // DB Connection
 $conn = mysqli_connect("localhost","root","","school");
